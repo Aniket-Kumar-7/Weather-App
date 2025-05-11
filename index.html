@@ -16,7 +16,7 @@
         </div>
         <div class="weather">
             <img src="weather-app-img\images\rain.png" alt="Rain" class="weather-icon">
-            <h1 class="temp">22&#176;</h1>
+            <h1 class="temp">22&#176;C</h1>
             <h2 class="city">Uttar Pradesh</h2>
             <div class="details">
                 <div class="col">
@@ -39,6 +39,48 @@
             </div>
         </div>
     </div>
+<script>
+    const apiKey="34d274b19fab14daa5006ee9315df50e";
+    const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric";
+
+    const searchBox=document.querySelector(".search input");
+    const searchBtn=document.querySelector(".search button");
+    const weatherIcon=document.querySelector(".weather-icon");
+
+    async function checkWeather(city){
+        const response=await fetch(apiUrl+city+`&appid=${apiKey}`);
+        var data = await response.json();
+
+        document.querySelector(".city").innerHTML=data.city;
+        document.querySelector(".temp").innerHTML=data.main.temp+"°C";
+        document.querySelector(".humidity").innerHTML=data.main.humidity+"%";
+        document.querySelector(".wind").innerHTML=data.main.wind+"km/h";
+
+        if(data.weather[0].main=="Clouds"){
+            weatherIcon.src="weather-app-img\images\clouds.png";
+        }
+        else if(data.weather[0].main=="Drizzle"){
+            weatherIcon.src="weather-app-img\images\drizzle.png";
+        }
+        else if(data.weather[0].main=="Mist"){
+            weatherIcon.src="weather-app-img\images\mist.png";
+        }
+        else if(data.weather[0].main=="Snow"){
+            weatherIcon.src="weather-app-img\images\snow.png";
+        }
+        else if(data.weather[0].main=="Rain"){
+            weatherIcon.src="weather-app-img\images\rain.png";
+        }
+        else if(data.weather[0].main=="Clear"){
+            weatherIcon.src="weather-app-img\images\clear.png";
+        }
+        document.querySelector(".weather").style.display="block";
+    }
+    searchBtn.addEventListener("click",()=>{
+        checkWeather(searchBox.value);
+    });
+
+</script>
 </body>
 
 </html>

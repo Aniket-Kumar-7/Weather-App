@@ -68,6 +68,7 @@ body{
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    margin-top: 10px;
     margin-left: 20px ;
     padding:10px;
 }
@@ -86,9 +87,24 @@ body{
     margin-left:10px ;
 }
 
+.humidity{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.wind{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
 .wind-col{
     display: flex;
     flex-direction: column;
     gap: 5px;
     margin-left:10px ;
+}
+
+.weather{
+    display: none;
 }
